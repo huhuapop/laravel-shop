@@ -1,9 +1,9 @@
 <?php
 
-use App\Models\UserAddress;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
-class UserAddressSeeder extends Seeder
+class UserSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,6 +13,13 @@ class UserAddressSeeder extends Seeder
     public function run()
     {
         // 生成数据集合
-        $links = factory(UserAddress::class)->times(6)->create();
+        $links = factory(User::class)->times(10)->create();
+
+        // 单独处理第一个用户的数据
+        $user = User::find(1);
+        $user->name = 'Huafu';
+        $user->email = 'huhuapop@outlook.com';
+        $user->save();
+
     }
 }
