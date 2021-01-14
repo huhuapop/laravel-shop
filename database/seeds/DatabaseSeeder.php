@@ -12,14 +12,16 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-        DB::table('users')->truncate();
-        DB::table('user_addresses')->truncate();
+//        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+//        DB::table('users')->truncate();
+//        DB::table('user_addresses')->truncate();
+        $this->call(AdminTablesSeeder::class);
         $this->call(UserSeeder::class);
         $this->call(UserAddressSeeder::class);
         $this->call(ProductsSeeder::class);
         $this->call(CouponCodeSeeder::class);
+        $this->call(OrdersSeeder::class);
 
-        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+//        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }
 }
