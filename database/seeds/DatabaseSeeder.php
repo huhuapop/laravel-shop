@@ -17,6 +17,8 @@ class DatabaseSeeder extends Seeder
         DB::table('user_addresses')->truncate();
         $this->call(UserSeeder::class);
         $this->call(UserAddressSeeder::class);
+        $this->call(ProductsSeeder::class);
+        $this->call(CouponCodeSeeder::class);
 
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }

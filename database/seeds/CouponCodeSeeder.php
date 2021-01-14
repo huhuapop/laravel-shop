@@ -1,9 +1,9 @@
 <?php
 
-use App\Models\UserAddress;
+use App\Models\CouponCode;
 use Illuminate\Database\Seeder;
 
-class UserAddressSeeder extends Seeder
+class CouponCodeSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,6 +13,6 @@ class UserAddressSeeder extends Seeder
     public function run()
     {
         // 生成数据集合
-        $userAddresses = factory(UserAddress::class)->times(50)->create();
+        $couponCodes = factory(CouponCode::class)->times(30)->create();
     }
 }
