@@ -24,6 +24,14 @@ Route::get('products', 'ProductsController@index')->name('products.index');
 
 
 
+//Route::get('alipay', function() {
+//    return app('alipay')->web([
+//        'out_trade_no' => time(),
+//        'total_amount' => '1',
+//        'subject' => 'test subject - 测试',
+//    ]);
+//});
+
 Auth::routes(['verify' => true]);
 
 // auth 中间件代表需要登录，verified中间件代表需要经过邮箱验证
@@ -43,8 +51,15 @@ Route::group(['middleware' => ['auth', 'verified']], function() {
     Route::post('orders', 'OrdersController@store')->name('orders.store');
     Route::get('orders', 'OrdersController@index')->name('orders.index');
     Route::get('orders/{order}', 'OrdersController@show')->name('orders.show');
-
+    Route::post('orders/{order}/received', 'OrdersController@received')->name('orders.received');
+    Route::get('orders/{order}/review', 'OrdersController@review')->name('orders.review.show');
+    Route::post('orders/{order}/review', 'OrdersController@sendReview')->name('orders.review.store');
+    Route::post('orders/{order}/apply_refund', 'OrdersController@applyRefund')->name('orders.apply_refund');
+    Route::get('payment/{order}/alipay', 'PaymentController@payByAlipay')->name('payment.alipay');
+    Route::get('payment/alipay/return', 'PaymentController@alipayReturn')->name('payment.alipay.return');
 
 });
+
+Route::post('payment/alipay/notify', 'PaymentController@alipayNotify')->name('payment.alipay.notify');
 
 Route::get('products/{product}', 'ProductsController@show')->name('products.show');
